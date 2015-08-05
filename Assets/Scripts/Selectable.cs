@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using UnityEngine.UI;
+
+public enum TileType {Red, Green, Blue, White, Pink, Purple, COUNT};
 
 [ExecuteInEditMode]
 public class Selectable : MHBaseClass
 {
+	public TileType type;
+
 	bool isSelected = false;
 
 	GameObject selectionObject = null;
@@ -12,6 +17,7 @@ public class Selectable : MHBaseClass
 	void Start ()
 	{
 		selectionObject = gameObject.transform.FindChild ("Selection").gameObject;
+		type = (TileType) Random.Range(0, (int)TileType.COUNT);
 
 		eventBus.AddListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
 	}
@@ -21,6 +27,8 @@ public class Selectable : MHBaseClass
 		if (eventData.targetObject == gameObject) {
 			isSelected = eventData.selected;
 			selectionObject.SetActive (isSelected);
+
+			Debug.Log(type);
 		}
 	}
 
