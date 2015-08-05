@@ -268,10 +268,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 786992172}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &145224931
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +344,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!224 &158080439 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22485786, guid: 1a6ad43e1ed444ca5839c85fd86123fe,
@@ -1130,7 +1129,7 @@ RectTransform:
   m_Children:
   - {fileID: 1990223448}
   - {fileID: 848777359}
-  m_Father: {fileID: 23950471}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
