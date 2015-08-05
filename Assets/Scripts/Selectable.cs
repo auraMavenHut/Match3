@@ -1,11 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
-using UnityEditor;
 using UnityEngine.UI;
 
 public enum TileType {Red, Green, Blue, White, Pink, Purple, COUNT};
 
-[ExecuteInEditMode]
 public class Selectable : MHBaseClass
 {
 	public TileType type;
