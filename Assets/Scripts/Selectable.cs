@@ -17,7 +17,7 @@ public class Selectable : MHBaseClass
 
 	bool isSelected = false;
 
-	string[] tileColors = new string[]{"ff0a0a", "47ad72", "007eff", "ffffff", "f481d5", "7a08a5"};
+	string[] tileColors = new string[]{"ff0a0a", "00CC00", "6600FF"};
 
 	GameObject selectionObject = null;
 
