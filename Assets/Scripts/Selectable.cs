@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
-[ExecuteInEditMode]
 public class Selectable : MHBaseClass
 {
 	bool isSelected = false;
