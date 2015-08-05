@@ -5,8 +5,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class Selectable : MHBaseClass
 {
-	public bool isSelected = false;
-	bool wasSelected = false;
+	bool isSelected = false;
 
 	GameObject selectionObject = null;
 
@@ -14,28 +13,19 @@ public class Selectable : MHBaseClass
 	{
 		selectionObject = gameObject.transform.FindChild ("Selection").gameObject;
 
-		eventBus.AddListener<ClickEvent.OnPointerClick> (OnSelectionChanged);
+		eventBus.AddListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
 	}
 
-	void OnSelectionChanged (ClickEvent.OnPointerClick eventData)
+	void OnSelectionChanged (PointerEvent.OnSelectionChanged eventData)
 	{
-		if (eventData.clickedObject == gameObject) {
-			isSelected = !wasSelected;
-			wasSelected = isSelected;
-
+		if (eventData.targetObject == gameObject) {
+			isSelected = eventData.selected;
 			selectionObject.SetActive (isSelected);
 		}
 	}
 
-	void CheckSelectionChanged ()
+	void OnDestroy ()
 	{
-		if (wasSelected != isSelected) {
-			OnSelectionChanged (new ClickEvent.OnPointerClick (gameObject));
-		}
-	}
-
-	void Update ()
-	{
-		CheckSelectionChanged ();
+		eventBus.RemoveListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
 	}
 }
