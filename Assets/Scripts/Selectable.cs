@@ -14,18 +14,20 @@ using System.Collections.Generic;
 public class Selectable : MHBaseClass
 {
 	public int type;
-
+	public int column, row;
 	bool isSelected = false;
 
-	string[] tileColors = new string[]{"ff0a0a", "00CC00", "6600FF"};
+	string[] tileColors = new string[]{"bc5879", "32a994", "e8bfa5", "80baf0", "b18dd3"};
 
 	GameObject selectionObject = null;
 
+	void Awake()
+	{
+		type = Random.Range(0, tileColors.Length);
+	}
 	void Start ()
 	{
 		selectionObject = gameObject.transform.FindChild ("Selection").gameObject;
-		type = Random.Range(0, tileColors.Length);
-
 		Image bg = gameObject.GetComponent<Image> ();
 		bg.color = HexToColor(tileColors[type]);//tileColors[type];
 		eventBus.AddListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
@@ -36,6 +38,11 @@ public class Selectable : MHBaseClass
 		if (eventData.targetObject == gameObject) {
 			isSelected = eventData.selected;
 			selectionObject.SetActive (isSelected);
+
+			if(isSelected)
+			{
+				Debug.Log("c = " + column + "r = " + row);
+			}
 
 		}
 	}
