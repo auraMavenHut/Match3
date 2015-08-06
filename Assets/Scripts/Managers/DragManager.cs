@@ -25,6 +25,7 @@ public class DragManager : MHBaseClass, IBeginDragHandler, IDragHandler, IEndDra
 	{
 		foreach (GameObject selectedObject in selectedObjects) {
 			eventBus.Publish (new PointerEvent.OnSelectionChanged (selectedObject, false));
+
 		}
 
 		selectedObjects.Clear ();

@@ -15,7 +15,10 @@ public class Selectable : MHBaseClass
 {
 	public int type;
 	public int column, row;
-	bool isSelected = false;
+	public bool needsToBeMoved = false;
+	public bool needsToBeDestroyed = false;
+	public bool newCreated = false;
+	public bool isSelected = false;
 
 	string[] tileColors = new string[]{"bc5879", "32a994", "e8bfa5", "80baf0", "b18dd3"};
 
@@ -27,9 +30,15 @@ public class Selectable : MHBaseClass
 	}
 	void Start ()
 	{
+		if (gameObject.transform.FindChild ("Selection") == null) {
+			return;
+		}
+
 		selectionObject = gameObject.transform.FindChild ("Selection").gameObject;
+
 		Image bg = gameObject.GetComponent<Image> ();
 		bg.color = HexToColor(tileColors[type]);//tileColors[type];
+
 		eventBus.AddListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
 	}
 
@@ -37,14 +46,42 @@ public class Selectable : MHBaseClass
 	{
 		if (eventData.targetObject == gameObject) {
 			isSelected = eventData.selected;
-			selectionObject.SetActive (isSelected);
 
 			if(isSelected)
 			{
-				Debug.Log("c = " + column + "r = " + row);
-			}
+				selectionObject.SetActive (isSelected);
 
+			}
+			else
+			{
+				MarkTileToDestroy();
+			}
 		}
+	}
+
+	public void MarkTileToDestroy()
+	{
+		needsToBeDestroyed = true;
+	}
+
+	public void MarkTileToMove()
+	{
+		needsToBeMoved = true;
+
+	}
+
+	public void UnmarkMovingTile()
+	{
+		needsToBeMoved = false;
+		needsToBeDestroyed = false;
+		newCreated = false;
+		isSelected = false;
+		selectionObject.SetActive (false);
+	}
+
+	public void DestroyObject()
+	{
+		Destroy (this.gameObject);
 	}
 
 	void OnDestroy ()
