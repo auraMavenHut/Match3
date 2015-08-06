@@ -3,14 +3,23 @@ using System.Collections;
 
 public class PointerEvent : GameEvent {
 	public GameObject targetObject;
-	public bool selected;
+	public bool isSelected;
 
 	public class OnSelectionChanged : PointerEvent
 	{
-		public OnSelectionChanged(GameObject clickedObject, bool selected)
+		public OnSelectionChanged(GameObject targetObject, bool isSelected)
 		{
-			this.targetObject = clickedObject;
-			this.selected = selected;
+			this.targetObject = targetObject;
+			this.isSelected = isSelected;
+		}
+	}
+
+	public class OnSelected : PointerEvent
+	{
+		public OnSelected(GameObject targetObject)
+		{
+			this.targetObject = targetObject;
+			this.isSelected = true;
 		}
 	}
 }
