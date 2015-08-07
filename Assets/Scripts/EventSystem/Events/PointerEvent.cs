@@ -13,4 +13,10 @@ public class PointerEvent : GameEvent {
 			this.isSelected = isSelected;
 		}
 	}
+
+
+	public class OnPointerFinished : PointerEvent
+	{
+	}
+
 }
