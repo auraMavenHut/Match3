@@ -140,14 +140,36 @@ public class GridManager : MHBaseClass
 				GameObject newOne = CreateRandomTileAtPosition (sc.column, sc.row);
 				tiles [tilesToReplace [i]] = newOne;
 
-				newOne.transform.localPosition = new Vector3 (offset.x + sc.column * itemSize, offset.y + rows * itemSize, 0f);
+				newOne.transform.localPosition = new Vector3 (offset.x + sc.column * itemSize, offset.y + (rows + GetNumberOfNewTilesFromArrayOnColumn(tiles,sc.column)) * itemSize, 0f);
 
 				Destroy (phTile);
-//				Debug.Log("replacing for " + sc.column + " " + sc.row);
 			}
 		}
 	}
 
+
+
+	int GetNumberOfNewTilesFromArrayOnColumn(GameObject[] tiles, int col)
+	{
+		int counting = 0;
+
+		for (int i = 0; i < tiles.Length; i++) {
+			
+			GameObject tile = tiles [i];
+			
+			if (tile != null) {
+				
+				Selectable sc = tile.GetComponent<Selectable> ();
+				
+				if (sc.newCreated == true && sc.column == col) {
+					
+					counting++;
+				}
+			}
+		}
+
+		return counting;
+	}
 
 
 

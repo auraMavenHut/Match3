@@ -489,8 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: c649cb1f359b14f0a968b55b668bfa86, type: 3}
-  m_Type: 2
+  m_Sprite: {fileID: 21300000, guid: 443680c8c806144a3b634e895f1c8c46, type: 3}
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 8
-  rows: 8
+  rows: 7
   item: {fileID: 116276, guid: 1a6ad43e1ed444ca5839c85fd86123fe, type: 2}
   itemSize: 60
 --- !u!114 &848777362
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848777358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
