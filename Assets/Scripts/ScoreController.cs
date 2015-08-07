@@ -19,11 +19,6 @@ public class ScoreController : MHBaseClass {
 		if (canScore){
 			totalScore += evendData.destroyedTiles*baseTileScore;
 			modifyScoreText();
-			if(totalScore >= scoreTarget){
-//				eventBus.Publish (new EndGameEvent.OnEndGame(true));
-				//this might cause problems. use commented version above if so.
-				stopScoring(null);
-			}
 		}
 	}
 
@@ -32,6 +27,7 @@ public class ScoreController : MHBaseClass {
 	}
 
 	private void stopScoring(TimeEvent.OnTimePassed evendData){
+		Debug.Log("Will Stop scoring");
 		canScore = false;
 		eventBus.Publish (new EndGameEvent.OnEndGame(totalScore >= scoreTarget));
 	}
