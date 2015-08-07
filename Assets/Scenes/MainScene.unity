@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerTag: 1
-  maxTime: 30
+  maxTime: 60
 --- !u!114 &1082612271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerTag: 0
-  maxTime: 30
+  maxTime: 60
 --- !u!114 &2108057981
 MonoBehaviour:
   m_ObjectHideFlags: 0
