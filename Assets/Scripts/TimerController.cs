@@ -64,17 +64,18 @@ public class TimerController : MHBaseClass
 			case TimerType.graphic:
 				{
 					float newTimeStripScale = timeLeft / maxTime;
-					float newTop = (1 - newTimeStripScale) * maxHeight + startTop;
+					//float newTop = (1 - newTimeStripScale) * maxHeight + startTop;
 					//			timeStrip.rectTransform.offsetMax.Set(timeStrip.rectTransform.offsetMax.x, newTop);
 					//found a way to move it down, by moving the y pivot to 0 and scaling
 					transform.localScale = new Vector2 (newTimeStripScale, 1.0f);
 				}
 				break;
 			}
-		} else {
-			timerEnabled = false;
-			eventBus.Publish (new TimeEvent.OnTimePassed());
-			Debug.Log("time finished");
+			if (timeLeft == 0) {
+				timerEnabled = false;
+				eventBus.Publish (new TimeEvent.OnTimePassed());
+				Debug.Log("time finished");
+			}
 		}
 	}
 }
