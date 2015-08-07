@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 8
-  rows: 8
+  rows: 7
   item: {fileID: 116276, guid: 1a6ad43e1ed444ca5839c85fd86123fe, type: 2}
   itemSize: 60
 --- !u!114 &848777362
