@@ -7,9 +7,16 @@ public class SelectableManager : MHBaseClass
 	LinkedList<GameObject> selectedObjects = new LinkedList<GameObject> ();
 	int targetType = -1;
 
+	LineRenderer lineRenderer = null;
+	RectTransform canvasSize = null;
+
 	void Start ()
 	{
 		eventBus.AddListener<PointerEvent.OnSelectionChanged> (OnSelectionChanged);
+
+		lineRenderer = gameObject.GetComponent<LineRenderer> ();
+
+		canvasSize = GameObject.Find ("Canvas").GetComponent<RectTransform>();
 	}
 
 	void OnDestroy ()
@@ -38,6 +45,9 @@ public class SelectableManager : MHBaseClass
 					highlight.SetActive (selectable.isSelected);
 
 					selectedObjects.AddLast (eventData.targetObject);
+
+					lineRenderer.SetVertexCount(selectedObjects.Count);
+					lineRenderer.SetPosition (selectedObjects.Count - 1, selectedObjects.Last.Value.GetComponent<RectTransform> ().localPosition - new Vector3 (0, canvasSize.sizeDelta.y / 2, 0));
 				}
 			}
 		} else {
@@ -55,6 +65,8 @@ public class SelectableManager : MHBaseClass
 				}
 			}
 			selectedObjects.Clear ();
+
+			lineRenderer.SetVertexCount (0);
 		}
 	}
 
