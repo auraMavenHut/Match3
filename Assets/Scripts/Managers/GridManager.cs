@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class GridManager : MonoBehaviour
+public class GridManager : MHBaseClass
 {
 
 	public int columns, rows;
@@ -14,7 +14,7 @@ public class GridManager : MonoBehaviour
 	
 	private TilesArray items = new TilesArray ();
 
-	private bool isAnimating;
+	private bool needsToAnimate;
 
 	private int tileIndex = 0;
 
@@ -28,7 +28,7 @@ public class GridManager : MonoBehaviour
 	
 		items.InitArrayWithSize (columns, rows);
 
-		isAnimating = false;
+		needsToAnimate = false;
 	
 		boardObject = gameObject;
 
@@ -36,6 +36,10 @@ public class GridManager : MonoBehaviour
 		offset = new Vector2 (-boardWidth / 2 + (boardWidth - columns * itemSize + itemSize) / 2, itemSize / 2);
 
 		CreateGrid ();
+
+
+		eventBus.AddListener<PointerEvent.OnPointerFinished> (OnPointerFinished);
+
 	}
 
 	void CreateGrid ()
@@ -72,10 +76,19 @@ public class GridManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if(needsToAnimate)
+		{
+			CheckForTilesToMove ();
 
-		CheckForTilesToMove ();
+			needsToAnimate = false;
+		}
 	}
 
+
+	void OnPointerFinished(PointerEvent.OnPointerFinished data)
+	{
+		needsToAnimate = true;
+	}
 
 
 	void CheckForTilesToMove ()
@@ -160,4 +173,10 @@ public class GridManager : MonoBehaviour
 			yield return null;
 		}
 	}
+
+	void OnDestroy()
+	{
+		eventBus.RemoveListener<PointerEvent.OnPointerFinished> (OnPointerFinished);
+	}
+
 }

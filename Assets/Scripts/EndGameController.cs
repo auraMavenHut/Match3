@@ -8,7 +8,9 @@ public class EndGameController : MHBaseClass {
 	}
 
 	private void endGame (EndGameEvent.OnEndGame eventData){
-		PlayerPrefs.SetInt(@"gameStatus", eventData.gameStatus ? 1 : 0);
+		Debug.Log("Ending the game");
+		PlayerPrefs.SetInt("gameStatus", eventData.gameStatus ? 1 : 0);
+		Application.LoadLevel("EndGameScene");
 	}
 
 	void OnDestroy ()

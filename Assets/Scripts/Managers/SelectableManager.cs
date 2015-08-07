@@ -35,7 +35,7 @@ public class SelectableManager : MHBaseClass
 			targetType = -1;
 		}
 
-		// check if tile has valid selection (wasn't already selected, has the same type as the others selected before, and is adjacent to the last selected)
+		// check if tile has valid selection (wasn't already selected, is not being animated, has the same type as the others selected before, and is adjacent to the last selected)
 		if (eventData.targetObject) {
 			Selectable selectable = eventData.targetObject.GetComponent<Selectable> ();
 			if (eventData.isSelected) {
@@ -64,6 +64,12 @@ public class SelectableManager : MHBaseClass
 					}
 				}
 			}
+
+			if (CanDestroy ()) {
+				eventBus.Publish(new PointerEvent.OnPointerFinished());
+				eventBus.Publish(new ScoreEvent.OnScoring(selectedObjects.Count));
+			}
+
 			selectedObjects.Clear ();
 
 			lineRenderer.SetVertexCount (0);
@@ -80,7 +86,7 @@ public class SelectableManager : MHBaseClass
 	{
 		Selectable currSelectable = gameObject.GetComponent<Selectable> ();
 					
-		if (!currSelectable.isSelected && currSelectable.type == targetType) {
+		if (!currSelectable.isSelected && !currSelectable.needsToBeMoved && currSelectable.type == targetType) {
 			bool belongsToGroup = false;
 			if (selectedObjects.Count < 1) {
 				belongsToGroup = true;

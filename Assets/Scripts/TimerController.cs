@@ -74,6 +74,7 @@ public class TimerController : MHBaseClass
 		} else {
 			timerEnabled = false;
 			eventBus.Publish (new TimeEvent.OnTimePassed());
+			Debug.Log("time finished");
 		}
 	}
 }
