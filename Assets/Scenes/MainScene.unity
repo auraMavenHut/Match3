@@ -535,8 +535,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 0, y: .165008545}
-  m_SizeDelta: {x: 540, y: -68}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 485, y: -67}
   m_Pivot: {x: .49999997, y: 0}
 --- !u!114 &848777360
 MonoBehaviour:
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 8
-  rows: 5
+  rows: 8
   item: {fileID: 116276, guid: 1a6ad43e1ed444ca5839c85fd86123fe, type: 2}
   itemSize: 60
 --- !u!114 &848777362
