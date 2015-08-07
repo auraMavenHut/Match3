@@ -57,7 +57,7 @@ public class TimerController : MHBaseClass
 				{
 					int minutes = timeLeft / 60;
 					int seconds = timeLeft - minutes * 60;
-					GetComponent<Text> ().text = minutes.ToString () + ":" + seconds.ToString ();
+					GetComponent<Text> ().text = minutes.ToString () + ":" + System.String.Format("{0:00}", seconds);
 				}
 				break;
 
@@ -67,7 +67,7 @@ public class TimerController : MHBaseClass
 					float newTop = (1 - newTimeStripScale) * maxHeight + startTop;
 					//			timeStrip.rectTransform.offsetMax.Set(timeStrip.rectTransform.offsetMax.x, newTop);
 					//found a way to move it down, by moving the y pivot to 0 and scaling
-					transform.localScale = new Vector2 (1.0f, newTimeStripScale);
+					transform.localScale = new Vector2 (newTimeStripScale, 1.0f);
 				}
 				break;
 			}
