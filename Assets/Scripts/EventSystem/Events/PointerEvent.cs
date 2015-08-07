@@ -13,13 +13,4 @@ public class PointerEvent : GameEvent {
 			this.isSelected = isSelected;
 		}
 	}
-
-	public class OnSelected : PointerEvent
-	{
-		public OnSelected(GameObject targetObject)
-		{
-			this.targetObject = targetObject;
-			this.isSelected = true;
-		}
-	}
 }
